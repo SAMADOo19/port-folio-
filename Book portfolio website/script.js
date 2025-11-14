@@ -163,57 +163,15 @@ function initMobile() {
         });
     });
     
-    // Créer la navigation mobile
-    createMobileNavigation();
+    // NE PAS créer la navigation mobile (supprimée)
+    // createMobileNavigation();
     
     // Initialiser les animations au scroll
     initScrollAnimations();
 }
 
-// Créer la navigation mobile
-function createMobileNavigation() {
-    if (document.querySelector('.mobile-nav')) return;
-    
-    const nav = document.createElement('div');
-    nav.className = 'mobile-nav';
-    
-    const sections = [
-        { icon: '👤', name: 'Profil' },
-        { icon: '💼', name: 'Expérience' },
-        { icon: '🎓', name: 'Éducation' },
-        { icon: '🛠️', name: 'Services' },
-        { icon: '⚡', name: 'Compétences' },
-        { icon: '📱', name: 'Projets' },
-        { icon: '📞', name: 'Contact' }
-    ];
-    
-    sections.forEach((section, index) => {
-        const button = document.createElement('button');
-        button.className = 'mobile-nav-btn';
-        button.innerHTML = section.icon;
-        button.title = section.name;
-        button.setAttribute('data-index', index);
-        
-        button.addEventListener('click', () => {
-            scrollToSection(index);
-        });
-        
-        nav.appendChild(button);
-    });
-    
-    document.body.appendChild(nav);
-}
-
-// Faire défiler vers une section spécifique
-function scrollToSection(index) {
-    const pages = document.querySelectorAll('.book-page');
-    if (pages[index]) {
-        pages[index].scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
-        });
-    }
-}
+// NE PAS créer la navigation mobile (fonction supprimée)
+// function createMobileNavigation() { ... }
 
 // Animations au défilement
 function initScrollAnimations() {
@@ -286,12 +244,6 @@ function handleResize() {
     if (isMobile()) {
         initMobile();
     } else {
-        // Supprimer la navigation mobile en desktop
-        const mobileNav = document.querySelector('.mobile-nav');
-        if (mobileNav) {
-            mobileNav.remove();
-        }
-        
         // Réactiver la navigation du livre
         const bookNavElements = document.querySelectorAll('.nextprev-btn, .number-page, .back-profile');
         bookNavElements.forEach(el => {
@@ -332,7 +284,7 @@ function adaptExistingButtons() {
     }
 }
 
-// CSS animations pour mobile
+// CSS animations pour mobile (sans la navbar)
 function addMobileAnimations() {
     const style = document.createElement('style');
     style.textContent = `
@@ -365,53 +317,7 @@ function addMobileAnimations() {
             }
         }
         
-        .mobile-nav {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 12px;
-            border-radius: 50px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
-        
-        .mobile-nav-btn {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: #764ba2;
-            color: white;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .mobile-nav-btn:hover,
-        .mobile-nav-btn.active {
-            background: #2c3e50;
-            transform: scale(1.1);
-        }
-        
-        @media (max-width: 480px) {
-            .mobile-nav {
-                padding: 10px;
-            }
-            
-            .mobile-nav-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
-        }
+        /* Supprimer les styles de la navbar mobile */
     `;
     document.head.appendChild(style);
 }
