@@ -18,6 +18,7 @@
     --pages-color:linear-gradient(90deg, #fff, #ddd);
     --border: 0.125rem solid #00abf0;
     --box-shadow: 0 0 0.8rem rgba(0,0,0,0.2);
+    --mobile-bg: #f8f9fa;
 
 }
 body{
@@ -30,6 +31,7 @@ body{
     overflow: hidden;
     font-family: "Nunito", sans-serif;
 }
+
 .wrapper{
     position: relative;
     width: 66rem;
@@ -38,6 +40,7 @@ body{
     perspective: 250rem;
     animation: show-animate 2s forwards;
 }
+
 @keyframes show-animate {
     0%,
     30% {
@@ -49,30 +52,33 @@ body{
         transform: rotate(0deg);
     }
 }
+
 .cover {
     position: absolute;
     top: 0;
     left: 0;
     width: 50%;
     height: 100%;
-    background-color: var(--cover-color);
-    background-color: #029bca;
+    background: var(--cover-color);
     box-shadow: var(--box-shadow);
     border-top-left-radius: 0.6rem;
     border-bottom-left-radius: 0.6rem;
     transform-origin: right;
 }
+
 .cover.cover-left{
     z-index: -1;
 }
+
 .cover.cover-right{
     z-index: 100;
     transition: transform 1s cubic-bezier(.645, .045, .355, 1);
-
 }
+
 .cover.cover-right.turn {
     transform: rotateY(180deg);
 }
+
 .book {
     position: relative;
     width: 100%;
@@ -80,6 +86,7 @@ body{
     display: flex;
     perspective: 250rem;
 }
+
 .book .book-page {
     position: absolute;
     width: 50%;
@@ -89,32 +96,50 @@ body{
     display: flex;
     padding: 2rem;
 }
+
 .book-page.page-left{
     box-shadow: -.6rem .6rem .6rem rgba(0,0,0,0.1);
 }
+
 .profile-page{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
+
 .profile-page img{
      max-width: 180px;
      border-radius: 50%;
      border: 0.25rem solid var(--main-color);
      margin-bottom: .8rem;
+     transition: transform 0.3s ease;
 }
+
+.profile-page img:hover {
+    transform: scale(1.05);
+}
+
 .profile-page h1 {
     font-size: 2.7rem;
     line-height: 1;
+    margin-bottom: 0.5rem;
 }
+
 .profile-page h3{
     color: var(--main-color);
     font-size: 1.5rem;
+    margin-bottom: 1rem;
 }
+
 .profile-page .social-media {
     margin: .6rem .8rem;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
 }
+
 .profile-page .social-media a{
     display: inline-flex;
     justify-content: center;
@@ -126,21 +151,30 @@ body{
     border-radius: 50%;
     font-size: 1.3rem;
     color: var(--main-color);
-    margin: 0 .2rem;
-    transition: .5s;
-
+    transition: all 0.3s ease;
 }
+
 .profile-page .social-media a:hover{
     background-color: var(--main-color);
     color: var(--white-color);
+    transform: translateY(-3px);
 }
+
 .profile-page p {
     text-align: justify;
     font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 1rem 0;
 }
+
 .profile-page .btn-box{
     margin-top: 1.2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
 }
+
 .btn {
     display: inline-flex;
     justify-content: center;
@@ -148,22 +182,30 @@ body{
     width: 9.5rem;
     height: 3rem;
     background: var(--main-color);
-    border: var(--border) ;
+    border: var(--border);
     border-radius: .3rem;
     font-size: 1rem;
-    color: var( --white-color);
+    color: var(--white-color);
     font-weight: 500;
-    margin: 0 1rem;
-    transition: .5s;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
+
 .btn-box .btn:nth-child(2){
     background: transparent;
     color: var(--main-color);
 }
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 171, 240, 0.3);
+}
+
 .btn-box .btn:nth-child(1):hover{
     background: transparent;
     color: var(--main-color);
 }
+
 .btn-box .btn:nth-child(2):hover{
     background: var(--main-color);
     color: var(--white-color);
@@ -177,6 +219,7 @@ body{
     transform-origin: left;
     transition: transform 1s cubic-bezier(.645, .045, .355, 1);
 }
+
 .book-page.page-right.turn{
     transform: rotateY(-180deg);
 }
@@ -190,26 +233,60 @@ body{
     height: 100%;
     background: var(--pages-color);
     padding: 1.5rem 2rem;
+    overflow-y: auto;
 }
+
 .book-page .page-front{
     transform: rotateY(0deg) translateZ(1px);
 }
+
 .book-page .page-back{
     transform: rotateY(180deg) translateZ(1px);
 }
 
 .title {
     text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: var(--main-color);
+    position: relative;
 }
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--main-color);
+    border-radius: 2px;
+}
+
 .workeduc-box {
     border-left: var(--border);
     margin-top: 2rem;
 }
+
 .workeduc-box .workeduc-content {
     position: relative;
     padding-left: 1.6rem;
     padding-bottom: 1.2rem;
+    animation: fadeInUp 0.6s ease;
 }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .workeduc-box .workeduc-content::before{
     content: '';
     position: absolute;
@@ -220,28 +297,35 @@ body{
     border-radius: 50%;
     background: var(--main-color);
 }
+
 .workeduc-content .year {
     color: var(--main-color);
     font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
+
 .workeduc-content h3{
     font-size: 1.4rem;
     margin: .3rem 0;
+    color: var(--text-color);
 }
+
 .workeduc-content p{
     font-size: 1.15rem;
-    text-align: justify ;
+    text-align: justify;
+    line-height: 1.6;
+    color: var(--second-text-color);
 }
-.workeduc-content .year i {
-    margin-right: .4rem;
-    font-size: 1.2rem;
-}
+
 .number-page{
     position: absolute;
     bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
     font-weight: 600;
+    color: var(--second-text-color);
 }
 
 /* next button */
@@ -257,74 +341,106 @@ body{
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    transition: .5s;
+    transition: all 0.3s ease;
+    background: transparent;
+    border: none;
 }
+
 .nextprev-btn:hover{
     color: var(--main-color);
+    transform: scale(1.1);
 }
+
 .nextprev-btn.back{
     left: 1.5rem;
 }
 
-/* my services */
+/* ===== MY SERVICES MINIMALIST ===== */
 .services-box{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+    margin-top: 1.5rem;
 }
+
 .services-box .services-content{
-    flex: 1 1 10rem ;
     border: var(--border);
     border-radius: .5rem;
-    padding: .8rem .5rem 1.1rem;
+    padding: 1.2rem 0.8rem;
     text-align: center;
-    transition: .3s ease;
+    transition: all 0.3s ease;
+    background: white;
+    animation: fadeInUp 0.6s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 180px;
+    justify-content: space-between;
 }
+
 .services-box .services-content:hover{
     box-shadow: var(--box-shadow);
+    transform: translateY(-3px);
 }
+
 .services-content i{
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: var(--main-color);
+    margin-bottom: 0.8rem;
 }
+
 .services-content h3{
     font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+    color: var(--text-color);
+    font-weight: 600;
 }
+
 .services-content p {
-    margin: .2rem 0 .8rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--second-text-color);
+    margin-bottom: 0.8rem;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
+
 .services-content .btn {
-    width: 8rem;
-    height: 2.5rem;
-}
-.services-content .btn:hover{
-    background-color: transparent;
-    color: var(--main-color);
+    width: 7rem;
+    height: 2.2rem;
+    font-size: 0.8rem;
+    padding: 0.5rem;
 }
 
-
-/* skilss box */
+/* skills box */
 .skills-box{
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
     margin-top: 2rem;
-
 }
+
 .skills-box .skills-content{
     flex: 1 1 20rem;
+    animation: fadeInUp 0.6s ease;
 }
+
 .skills-content h3{
     font-size: 1.3rem;
     line-height: 1;
     margin-bottom: .6rem;
+    color: var(--text-color);
 }
+
 .skills-content .content{
     display: flex;
     flex-wrap: wrap;
     gap: .8rem;
 }
+
 .skills-content .content span{
     display: inline-flex;
     flex-direction: column;
@@ -335,21 +451,27 @@ body{
     border: var(--border);
     border-radius: .3rem;
     font-weight: 600;
-    transition: .3 ease;
+    transition: all 0.3s ease;
+    background: white;
 }
+
 .skills-content .content span:hover{
     box-shadow: var(--box-shadow);
+    transform: translateY(-3px);
 }
+
 .skills-content .content span i{
     color: var(--main-color);
-    font-size: 3rem;
+    font-size: 2.5rem;
+    margin-bottom: 0.3rem;
 }
 
 /* portfolio */
 .portfolio-box{
     margin-top: 2rem;
-
+    animation: fadeInUp 0.6s ease;
 }
+
 .portfolio-box .img-box{
     display: flex;
     width: 100%;
@@ -358,54 +480,68 @@ body{
     border: var(--border);
     overflow: hidden;
 }
+
 .portfolio-box .img-box img{
     width: 100%;
     object-fit: cover;
     transition: .5s ease;
 }
+
 .portfolio-box .img-box:hover img{
     transform: scale(1.1);
 }
+
 .portfolio-box .info-box{
     margin: 1rem 0 1.5rem;
 }
+
 .portfolio-box .info-box .info-title{
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
 }
+
 .portfolio-box .info-box .info-title h3{
     font-size: 1.3rem;
+    color: var(--text-color);
 }
+
 .portfolio-box .info-box .info-title a{
     display: flex;
     align-items: center;
     color: var(--main-color);
+    transition: color 0.3s ease;
 }
-.portfolio-box .info-box .info-title a i{
-    margin-left: .3rem;
+
+.portfolio-box .info-box .info-title a:hover{
+    color: var(--second-text-color);
 }
+
 .portfolio-box .info-box p:nth-of-type(1){
     font-weight: 600;
+    color: var(--main-color);
 }
+
 .portfolio-box .info-box p{
     text-align: justify;
+    line-height: 1.6;
+    color: var(--second-text-color);
 }
+
 .portfolio-box .btn-box{
     display: flex;
     justify-content: center;
+    gap: 1rem;
 }
-.portfolio-box .btn-box .btn{
-    margin: 0 1 .15rem;
-}
-
 
 /* Contact Me! */
 .contact-box{
     margin-top: 2rem;
     text-align: center;
+    animation: fadeInUp 0.6s ease;
 }
+
 .contact-box .field{
     width: 100%;
     background-color: transparent;
@@ -415,21 +551,21 @@ body{
     font-size: 1rem;
     color: var(--text-color);
     margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.contact-box .field:focus{
+    border-color: var(--main-color);
+    box-shadow: 0 0 0 3px rgba(0, 171, 240, 0.1);
 }
 
 .contact-box .field::placeholder{
-    color: var(--text-color);
+    color: var(--second-text-color);
 }
+
 .contact-box textarea{
     resize: none;
     height: 15rem;
-}
-.contact-box .btn{
-    cursor: pointer;
-}
-.contact-box .btn:hover{
-    background-color: transparent;
-    color: var(--main-color);
 }
 
 .back-profile{
@@ -446,12 +582,15 @@ body{
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    transition: .5s;
+    transition: all 0.3s ease;
 }
+
 .back-profile:hover{
     background: var(--main-color);
     color: var(--white-color);
+    transform: scale(1.1);
 }
+
 .back-profile p{
     position: absolute;
     top: 0;
@@ -461,118 +600,390 @@ body{
     opacity: 0;
     transition: .5s;
     color: var(--main-color);
+    white-space: nowrap;
 }
+
 .back-profile:hover p{
     opacity: 1;
     transform: translateX(-50%) scale(1);
     top: -1.8rem;
-
 }
-/* Responsive pour écrans de tablettes et mobiles */
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablettes */
 @media (max-width: 1024px) {
     .wrapper {
-        width: 90%;
+        width: 95%;
         height: auto;
+        min-height: 100vh;
         padding: 1rem;
+        perspective: none;
     }
-    .book-page {
+    
+    .book {
+        flex-direction: column;
+        height: auto;
+        transform: none !important;
+    }
+    
+    .book .book-page {
+        position: relative;
         width: 100%;
         height: auto;
-        padding: 1rem;
+        margin-bottom: 2rem;
+        border-radius: 0.6rem;
+        transform: none !important;
+    }
+    
+    .book-page.page-right.turn {
+        transform: none !important;
+    }
+    
+    .cover {
+        display: none;
+    }
+    
+    .page-front, .page-back {
         position: relative;
+        transform: none !important;
+        height: auto;
     }
+    
+    .book-page.page-right .page-back {
+        display: none;
+    }
+    
+    .book-page.page-right.turn .page-front {
+        display: none;
+    }
+    
+    .book-page.page-right.turn .page-back {
+        display: block;
+    }
+    
+    .nextprev-btn {
+        display: none;
+    }
+    
+    .back-profile {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 1000;
+        background: var(--main-color);
+        color: var(--white-color);
+    }
+
+    /* Services responsive tablette */
+    .services-box {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .services-box .services-content {
+        min-height: 160px;
+        padding: 1rem 0.6rem;
+    }
+    
+    .services-content i {
+        font-size: 2rem;
+    }
+    
+    .services-content h3 {
+        font-size: 1rem;
+    }
+    
+    .services-content p {
+        font-size: 0.8rem;
+    }
+}
+
+/* Mobiles */
+@media (max-width: 768px) {
+    body {
+        background: var(--mobile-bg);
+        overflow-y: auto;
+        padding: 1rem 0;
+        min-height: 100vh;
+        align-items: flex-start;
+    }
+    
+    .wrapper {
+        width: 100%;
+        padding: 0.5rem;
+        animation: none;
+    }
+    
+    .book .book-page {
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
     .profile-page img {
-        max-width: 150px;
+        max-width: 140px;
     }
+    
     .profile-page h1 {
         font-size: 2rem;
     }
+    
     .profile-page h3 {
         font-size: 1.2rem;
     }
-    .btn {
-        width: 8rem;
-        height: 2.5rem;
-        font-size: 0.9rem;
+    
+    .profile-page p {
+        font-size: 1rem;
+        text-align: center;
     }
-    .services-box, .skills-box {
+    
+    .btn-box {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 250px;
+        margin: 0.3rem 0;
+    }
+    
+    .title {
+        font-size: 1.6rem;
+    }
+
+    /* Services responsive mobile */
+    .services-box {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+        margin-top: 1rem;
+    }
+    
+    .services-box .services-content {
+        min-height: 140px;
+        padding: 1rem;
+        flex-direction: row;
+        text-align: left;
+        justify-content: flex-start;
+        gap: 1rem;
+    }
+    
+    .services-content i {
+        font-size: 1.8rem;
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+    
+    .services-content .content-wrapper {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 100px;
+    }
+    
+    .services-content h3 {
+        font-size: 1rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .services-content p {
+        font-size: 0.8rem;
+        margin-bottom: 0.6rem;
+        -webkit-line-clamp: 2;
+    }
+    
+    .services-content .btn {
+        width: auto;
+        min-width: 6rem;
+        height: 2rem;
+        font-size: 0.75rem;
+        align-self: flex-start;
+    }
+    
+    .skills-box {
         flex-direction: column;
         gap: 1rem;
     }
-    .portfolio-box .img-box {
-        height: 12rem;
-    }
-    .contact-box textarea {
-        height: 10rem;
-    }
-}
-
-@media (max-width: 768px) {
-    body {
-        overflow-y: auto; /* pour permettre le scroll vertical */
-    }
-    .wrapper {
-        width: 95%;
-        padding: 0.5rem;
-    }
-    .profile-page h1 {
-        font-size: 1.8rem;
-    }
-    .profile-page h3 {
-        font-size: 1rem;
-    }
-    .services-box .services-content,
+    
     .skills-box .skills-content {
         flex: 1 1 100%;
     }
+    
+    .skills-content .content {
+        justify-content: center;
+    }
+    
     .portfolio-box .img-box {
+        height: 12rem;
+    }
+    
+    .portfolio-box .info-box .info-title {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .workeduc-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .workeduc-content p {
+        font-size: 1rem;
+    }
+    
+    .contact-box textarea {
         height: 10rem;
     }
-    .btn {
-        width: 7rem;
-        height: 2rem;
-        font-size: 0.8rem;
-    }
-    .nextprev-btn {
-        width: 1.5rem;
-        height: 1.5rem;
-        font-size: 1.5rem;
-    }
+    
     .back-profile {
-        width: 1.5rem;
-        height: 1.5rem;
+        bottom: 1rem;
+        right: 1rem;
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.3rem;
+    }
+    
+    .back-profile p {
+        font-size: 0.9rem;
     }
 }
 
+/* Petits mobiles */
 @media (max-width: 480px) {
+    .book .book-page {
+        padding: 1rem;
+    }
+    
     .profile-page img {
         max-width: 120px;
     }
+    
     .profile-page h1 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
+    
     .profile-page h3 {
+        font-size: 1rem;
+    }
+    
+    .social-media a {
+        width: 2.2rem;
+        height: 2.2rem;
+        font-size: 1.1rem;
+    }
+    
+    .title {
+        font-size: 1.4rem;
+    }
+
+    /* Services très petits écrans */
+    .services-box .services-content {
+        padding: 0.8rem;
+        gap: 0.8rem;
+        min-height: 120px;
+    }
+    
+    .services-content i {
+        font-size: 1.6rem;
+    }
+    
+    .services-content h3 {
         font-size: 0.9rem;
     }
-    .services-box .services-content,
-    .skills-box .skills-content,
-    .portfolio-box .info-box {
-        flex: 1 1 100%;
-    }
-    .portfolio-box .img-box {
-        height: 8rem;
-    }
-    .contact-box textarea {
-        height: 8rem;
-    }
-    .btn {
-        width: 6rem;
-        height: 1.8rem;
+    
+    .services-content p {
         font-size: 0.75rem;
     }
-    .nextprev-btn {
-        width: 1.2rem;
-        height: 1.2rem;
-        font-size: 1.2rem;
+    
+    .services-content .btn {
+        min-width: 5rem;
+        height: 1.8rem;
+        font-size: 0.7rem;
+    }
+    
+    .skills-content .content span {
+        width: 5rem;
+        height: 4.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .skills-content .content span i {
+        font-size: 2rem;
+    }
+    
+    .portfolio-box .img-box {
+        height: 10rem;
+    }
+    
+    .number-page {
+        display: none;
+    }
+    
+    .contact-box .field {
+        padding: 0.7rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Mode paysage mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    body {
+        align-items: flex-start;
+        padding: 1rem 0;
+    }
+    
+    .wrapper {
+        height: auto;
+    }
+    
+    .book .book-page {
+        min-height: auto;
+    }
+    
+    .profile-page {
+        padding: 1rem 0;
+    }
+    
+    .profile-page img {
+        max-width: 100px;
+    }
+
+    /* Services paysage */
+    .services-box {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+    
+    .services-box .services-content {
+        min-height: 110px;
+        padding: 0.8rem;
+    }
+}
+
+/* Animation pour le scroll sur mobile */
+@media (max-width: 768px) {
+    .book-page .page-front,
+    .book-page .page-back {
+        overflow-y: visible;
+    }
+    
+    .services-content,
+    .skills-content,
+    .workeduc-content {
+        animation: fadeInUp 0.6s ease;
+    }
+}
+
+/* Amélioration de la lisibilité sur mobile */
+@media (max-width: 768px) {
+    .book .book-page {
+        background: var(--white-color);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
 }
